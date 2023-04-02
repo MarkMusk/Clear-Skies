@@ -23,8 +23,11 @@ def search():
     print(f"RADIO= {radio}, SEARCH= {search} SWITCH= {deicing}")
     if searchTo not in null and searchFrom not in null:
         values = formatData(radio=radio, searchTo=searchTo, searchFrom=searchFrom, deicing=deicing)
+        print(values)
         if not values:
             return render_template('clearskieserror.html')
+        if values == "NOMETAR":
+            return render_template('clearskiesnometar')
     else:
         return render_template('clearskieserror.html')
     return render_template('clearskies.html', contentTo=values['contentTo'], contentFrom=values['contentFrom'], warnings=values['warnings'], opacities=values['opacities'])
